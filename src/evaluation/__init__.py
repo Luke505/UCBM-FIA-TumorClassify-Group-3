@@ -1,8 +1,8 @@
 """
 Evaluation strategies module
 
-This module implements holdout, random subsampling, and K-fold
-cross-validation strategies using the Strategy design pattern
+This module implements various cross-validation and holdout strategies
+using the Strategy design pattern
 """
 
 from .strategies import (
@@ -10,6 +10,11 @@ from .strategies import (
     HoldoutValidation,
     RandomSubsampling,
     KFoldCrossValidation,
+    LeaveOneOutCrossValidation,
+    LeavePOutCrossValidation,
+    StratifiedCrossValidation,
+    StratifiedShuffleSplit,
+    Bootstrap,
     ValidationStrategyFactory
 )
 
@@ -18,5 +23,10 @@ __all__ = [
     'HoldoutValidation',
     'RandomSubsampling',
     'KFoldCrossValidation',
+    'LeaveOneOutCrossValidation',
+    'LeavePOutCrossValidation',
+    'StratifiedCrossValidation',
+    'StratifiedShuffleSplit',
+    'Bootstrap',
     'ValidationStrategyFactory'
 ]
