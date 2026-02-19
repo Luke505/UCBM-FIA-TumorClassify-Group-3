@@ -5,6 +5,7 @@ This module implements a k-NN classifier from scratch without using
 external machine learning libraries like scikit-learn
 """
 
+import random
 from collections import Counter
 from typing import Union
 
@@ -161,11 +162,15 @@ class KNNClassifier:
         # Count occurrences of each label
         label_counts: Counter[float] = Counter(k_nearest_labels)
 
-        # Return the most common label (deterministic: first max-count label wins)
+        # Handle ties: if there's a tie, randomly select among the tied labels
         max_count = max(label_counts.values())
         most_common_labels = [label for label, count in label_counts.items() if count == max_count]
 
-        return most_common_labels[0]
+        if len(most_common_labels) > 1:
+            # Random tie-breaking
+            return random.choice(most_common_labels)
+        else:
+            return most_common_labels[0]
 
     def _predict_proba_single(self, test_sample: np.ndarray[tuple[int, int], np.dtype[np.float64]]) -> np.ndarray[tuple[int, int], np.dtype[np.float64]]:
         # noinspection GrazieInspection
